@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Assignment 4</title>
+</h:head>
+<h:body>
+<h1>Survey</h1><br/>
+<br/>
+Please fill in the below survey form:	
+<h:form>
+		
+
+	<legend>Survey</legend>
+	 <h:panelGrid columns="3">
+			<legend>Survey:</legend>
+			<br/><br/>
+			<p:outputLabel id="firstnameoutputId" value="Firstname" />
+			<p:inputText id="firstnameinputId" value="#{user.student.firstname}"
+				required="true" requiredMessage="first name cannot be blank"
+				validatorMessage="name cannot be more then 15 characters or numeric">
+				<f:validateLength maximum="15" />
+				<f:validateRegex pattern="[a-zA-Z]*" />
+			</p:inputText>
+			<br/>
+
+
+			<p:outputLabel id="LastnameOutputId" value="Lastname:" />
+			<p:inputText id="LastnameinputId" value="#{user.student.lastname}"
+				required="true" requiredMessage="last name cannot be blank"
+				validatorMessage="name cannot be more then 15 characters or numeric">
+				<f:validateLength maximum="15" />
+				<f:validateRegex pattern="[a-zA-Z]*" />
+			</p:inputText>
+			<br />
+
+			<p:outputLabel id="StreetAddressOutputId" value="StreetAddress:" />
+			<p:inputText id="StreetAddressinputId"
+				value="#{user.student.streetaddress}" required="true"
+				requiredMessage="Street address cannot be blank"
+				validatorMessage="Street address cannot be more then 30 characters">
+				<f:validateLength maximum="30" />
+			</p:inputText>
+			<br />
+
+
+
+			<p:outputLabel id="zipLabel" for="zip" value="Zip" />
+			<p:inputText id="zip" value="#{user.student.zip}"
+				validatorMessage="Zip code should of exactly 5 characters.">
+				<f:ajax event="keyup" render="city state" />
+				<f:validateLength for="zip" maximum="5" minimum="5" />
+			</p:inputText>
+			<p:message for="zip" styleClass="error" />
+
+			<p:outputLabel id="cityLabel" for="city" value="City" />
+			<p:inputText id="city" value="#{user.student.city}" />
+			<p:message for="city" />
+
+			<p:outputLabel id="stateLabel" for="state" value="State" />
+			<p:inputText id="state" value="#{user.student.state}" />
+			<p:message for="state" styleClass="error" />
+
+
+
+
+			<p:outputLabel id="TelephoneOutputId" value="Phone:" />
+			<p:inputMask id="TelephoneinputId" value="#{user.student.telephone}"
+				mask="(999) 999-9999" />
+			<br />
+
+			<p:outputLabel id="EmailOutputId" value="Email:" />
+			<p:inputText id="EmailinputId" value="#{user.student.email}"
+				required="true" requiredMessage="email cannot be blank"
+				validatorMessage="Enter a correct Email">
+				<f:validateRegex
+					pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+			</p:inputText>
+			<br />
+
+
+			<p:outputLabel value="Date:" />
+			<p:calendar value="#{user.student.date}" required="true"
+				requiredMessage="date required" />
+			<br />
+			
+			
+			<p:outputLabel value="StartDate:" />
+			<p:calendar value="#{user.student.startDate}" required="true"
+				requiredMessage="Start date required" />
+			<br />
+
+
+			<p:outputLabel value="How did you come to know about this University ?" />
+			<p:selectOneRadio value="#{user.student.radio}">
+				<f:selectItem itemValue="Friends" itemLabel="Friends" />
+				<f:selectItem itemValue="Television" itemLabel="Television" />
+				<f:selectItem itemValue="Internet" itemLabel="Internet" />
+				<f:selectItem itemValue="Other" itemLabel="Other" />
+			</p:selectOneRadio>
+			<br />
+
+
+
+			<p:outputLabel value="What did you liked most about the University ?" />
+			<p:selectManyCheckbox value="#{user.student.checkbox}">
+				<f:selectItem itemValue="Student" itemLabel="Students" />
+				<f:selectItem itemValue="Campus" itemLabel="Campus" />
+				<f:selectItem itemValue="Dorms" itemLabel="Dorms" />
+				<f:selectItem itemValue="location" itemLabel="Location" />
+				<f:selectItem itemValue="Atmosphere" itemLabel="Atmosphere" />
+			</p:selectManyCheckbox>
+			<br />
+
+			<p:outputLabel value="How Likely are you to reccommend this University to other students ? select between likely,Unlikely and Very likely"/>
+			<p:autoComplete value="#{user.student.likely}"
+				completeMethod="#{user.completeDrop}" forceSelection="true"
+				required="true" requiredMessage="You must choose a language" /><br/>
+
+
+			
+
+
+			<p:outputLabel value="Enter 10 numbers seperated by ','  for Raffle" />
+			<p:inputText value="#{user.student.raffle}">
+			</p:inputText>
+			<br />
+
+			<p:outputLabel value="Anything else that you want to say to us ?" />
+			<p:inputTextarea cols="10" rows="6" value="#{user.student.text}" />
+			<br />
+			
+			
+			
+			<h3>Enter Emergency Contact information:</h3><br/>
+			
+			
+			<p:outputLabel value = "Emergency Name:"/>
+			<p:inputText id="ename" value="#{user.student.ename}"
+				required="true" requiredMessage="name cannot be blank"></p:inputText>
+			<br />
+			
+			
+			<p:outputLabel value = "Emergency Phone Number:"/>
+			<p:inputText id="ephone" value="#{user.student.ephone}"
+				required="true" requiredMessage="phone number cannot be left balnk"></p:inputText>
+			<br />
+			
+			
+			<p:outputLabel value = "Emergengy Contact Email:"/>
+			<p:inputText id="eemail" value="#{user.student.eemail}"
+				required="true" requiredMessage="email cannot be blank"></p:inputText>
+ 			<br />
+          
+           
+           
+			<p:commandButton id="submit" value="Submit"
+				action="#{user.execute1}" />
+			<p:commandButton value="cancel" type="reset" ajax = "false"/>
+
+		
+			
+		  </h:panelGrid>
+		
+	</h:form>
+</h:body>
+</html>
+

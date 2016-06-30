@@ -1,0 +1,44 @@
+<!-- This file contains a form with fields to search the database. -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head> Search
+	</h:head>
+ 
+<h:body>
+<h:form> 
+	<p>Enter the details and click submit to search.</p>
+	<h:panelGrid>
+	Last Name:
+	<p:inputText id="lastName" 
+				 value= "#{user.student.lastname}">
+	</p:inputText>
+	
+	First Name:
+	<p:inputText id="firstName" 
+				 value= "#{user.student.firstname}">
+	</p:inputText>
+	
+	City:
+	<p:inputText id="city" 
+				 value= "#{user.student.city}">
+	</p:inputText>
+	
+	State:
+	<p:inputText id="state" 
+				 value= "#{user.student.state}">
+	</p:inputText>
+	</h:panelGrid>
+	
+	
+		<p:commandButton value="Submit" type="submit" action="#{user.CustomQuery}" ajax="false"></p:commandButton>
+		<p:commandButton value="Cancel" type="reset" ajax="false"></p:commandButton>
+		<p:commandLink value="Click here to go back to the Homepage" action="homepage" ajax = "false"></p:commandLink>
+		
+</h:form>
+</h:body> 
+</html>
